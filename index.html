@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boyfriend Simulator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="app">
+
+    <!-- HEADER -->
+    <header>
+      <h1 class="game-title">💕 Boyfriend Simulator</h1>
+      <p class="game-subtitle">Keep your tiny pixel boyfriend alive, loved, and only mildly dramatic.</p>
+    </header>
+
+    <!-- MAIN GAME AREA -->
+    <main>
+
+      <!-- LEFT: CHARACTER + SPEECH -->
+      <section class="character-panel">
+
+        <div id="relationship-level-display">
+          <span class="level-label">Relationship:</span>
+          <span id="level-name" class="level-name">Who is this man</span>
+        </div>
+
+        <!-- BB Character -->
+        <div id="bb-container">
+          <div id="bb-character" class="mood-normal">
+            <!-- Pixel BB built from divs -->
+            <div class="bb-wrap">
+              <!-- Hair -->
+              <div class="bb-hair">
+                <div class="hair-left"></div>
+                <div class="hair-mid"></div>
+                <div class="hair-right"></div>
+              </div>
+              <!-- Head -->
+              <div class="bb-head">
+                <!-- Eyes -->
+                <div class="bb-eyes">
+                  <div class="eye" id="eye-left">
+                    <div class="pupil"></div>
+                  </div>
+                  <div class="eye" id="eye-right">
+                    <div class="pupil"></div>
+                  </div>
+                </div>
+                <!-- Mouth -->
+                <div id="bb-mouth" class="mouth-neutral"></div>
+                <!-- Blush -->
+                <div class="bb-blush">
+                  <div class="blush-dot"></div>
+                  <div class="blush-dot"></div>
+                </div>
+              </div>
+              <!-- Body -->
+              <div class="bb-body">
+                <div class="bb-shirt">
+                  <div class="shirt-detail"></div>
+                </div>
+                <div class="bb-arms">
+                  <div class="arm arm-left"></div>
+                  <div class="arm arm-right"></div>
+                </div>
+                <div class="bb-legs">
+                  <div class="leg leg-left"></div>
+                  <div class="leg leg-right"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating hearts container -->
+          <div id="hearts-container"></div>
+        </div>
+
+        <!-- Mood display -->
+        <div id="mood-display">
+          <span class="mood-label">Mood:</span>
+          <span id="mood-emoji" class="mood-emoji">😏</span>
+          <span id="mood-text" class="mood-text">Unbothered</span>
+        </div>
+
+        <!-- Speech bubble -->
+        <div id="speech-bubble" class="speech-bubble">
+          <div class="bubble-pointer"></div>
+          <p id="speech-text">bb is fine. obviously. totally not waiting for your text.</p>
+        </div>
+
+        <!-- Warning message -->
+        <div id="warning-box" class="warning-box hidden">
+          <span id="warning-text"></span>
+        </div>
+
+      </section>
+
+      <!-- RIGHT: STATS + ACTIONS -->
+      <section class="info-panel">
+
+        <!-- STATS -->
+        <div class="stats-box">
+          <h2 class="section-title">BB's Stats</h2>
+          <div class="stats-grid">
+
+            <div class="stat-row">
+              <span class="stat-label">💖 Love</span>
+              <div class="stat-bar-wrap">
+                <div class="stat-bar" id="bar-love"><div class="bar-fill love-fill" id="fill-love"></div></div>
+              </div>
+              <span class="stat-val" id="val-love">50</span>
+            </div>
+
+            <div class="stat-row">
+              <span class="stat-label">😤 Mood</span>
+              <div class="stat-bar-wrap">
+                <div class="stat-bar" id="bar-mood"><div class="bar-fill mood-fill" id="fill-mood"></div></div>
+              </div>
+              <span class="stat-val" id="val-mood">50</span>
+            </div>
+
+            <div class="stat-row">
+              <span class="stat-label">⚡ Energy</span>
+              <div class="stat-bar-wrap">
+                <div class="stat-bar" id="bar-energy"><div class="bar-fill energy-fill" id="fill-energy"></div></div>
+              </div>
+              <span class="stat-val" id="val-energy">70</span>
+            </div>
+
+            <div class="stat-row">
+              <span class="stat-label">🍕 Hunger</span>
+              <div class="stat-bar-wrap">
+                <div class="stat-bar" id="bar-hunger"><div class="bar-fill hunger-fill" id="fill-hunger"></div></div>
+              </div>
+              <span class="stat-val" id="val-hunger">60</span>
+            </div>
+
+            <div class="stat-row">
+              <span class="stat-label">📱 Attention</span>
+              <div class="stat-bar-wrap">
+                <div class="stat-bar" id="bar-attention"><div class="bar-fill attention-fill" id="fill-attention"></div></div>
+              </div>
+              <span class="stat-val" id="val-attention">55</span>
+            </div>
+
+            <div class="stat-row">
+              <span class="stat-label">💅 Sass</span>
+              <div class="stat-bar-wrap">
+                <div class="stat-bar" id="bar-sass"><div class="bar-fill sass-fill" id="fill-sass"></div></div>
+              </div>
+              <span class="stat-val" id="val-sass">30</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="actions-box">
+          <h2 class="section-title">Do Something</h2>
+          <div class="buttons-grid">
+            <button class="action-btn btn-text"     onclick="doAction('text')">📱 Text BB</button>
+            <button class="action-btn btn-feed"     onclick="doAction('feed')">🍕 Feed BB</button>
+            <button class="action-btn btn-compliment" onclick="doAction('compliment')">✨ Compliment BB</button>
+            <button class="action-btn btn-meme"     onclick="doAction('meme')">😂 Send Meme</button>
+            <button class="action-btn btn-date"     onclick="doAction('date')">💞 Go on Date</button>
+            <button class="action-btn btn-nap"      onclick="doAction('nap')">😴 Let Him Nap</button>
+            <button class="action-btn btn-gift"     onclick="doAction('gift')">🎁 Give Gift</button>
+            <button class="action-btn btn-ignore"   onclick="doAction('ignore')">🙈 Ignore Him</button>
+            <button class="action-btn btn-apologise" onclick="doAction('apologise')">🙏 Apologise</button>
+            <button class="action-btn btn-annoy"    onclick="doAction('annoy')">😈 Annoy Him</button>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <button id="reset-btn" onclick="resetGame()">💔 Reset Relationship</button>
+      <p class="footer-text">Made for unserious relationship management.</p>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
